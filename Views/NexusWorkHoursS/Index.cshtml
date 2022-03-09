@@ -1,0 +1,39 @@
+﻿@model List<SistemaMVC_Demo.Models.Entidad.EntidadProyecto>
+
+
+@{
+    ViewBag.Title = "Proyectos";
+}
+
+<div class="container">
+    <div>
+        <div class="btnModal">
+            <a href="/NexusWorkHoursS/Create" class="btn btn-light" data-toggle="modal">
+                Agregar  +
+            </a>
+        </div>
+        <br>
+
+        <table class="table table-bordered table-hover">
+            <tr>
+                <td>ID</td>
+                <td>Proyecto</td>
+                <td>Acciones</td>
+            </tr>
+            @foreach (var reg in Model)
+            {
+                <tr>
+                    <td>@reg.ID_proyecto</td>
+                    <td>@reg.proyecto_nombre</td>
+                    <td>
+                        <a href="/NexusWorkHoursS/Edit/@reg.ID_proyecto" class="btn btn-success">Editar</a>
+                        <a href="/NexusWorkHoursS/Delete/@reg.ID_proyecto" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
+</div>
+

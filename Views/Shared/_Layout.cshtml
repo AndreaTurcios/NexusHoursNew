@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<HTML lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - NexusEnterprise</title>
+    @Styles.Render("~/Content/css?/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<div class="css-xfq28i"></div>
+<body>
+    <nav>
+        <div class="menu">
+            <ul>
+                <li><a href="/Default"><img src="../Resources/ActivityHoursLogo.png" width="60" height="60" class="top-center"></a></li>
+            </ul>
+            <ul>
+                <li><a href="/Proyectos">@Html.ActionLink("Proyectos", "Index", "NexusWorkHoursS")<</a></li>
+                <li><a href="/Clientes">@Html.ActionLink("Colaboradores", "Index", "NexusWorkHoursS")</a></li>
+                <li><a href="/Actividades">@Html.ActionLink("Colaboradores", "Index", "NexusWorkHoursS")</a></li>
+                <li><a href="/Colaboradores">@Html.ActionLink("Colaboradores", "Index", "NexusWorkHoursS")<</a></li>
+                <li><a href="/ControlColaboradores">@Html.ActionLink("Control", "Index", "NexusWorkHoursS")</a>Control</li>
+                <li><a href="/Login">@Html.ActionLink("Login", "Index", "NexusWorkHoursS")</a>Login</li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    @RenderBody()
+
+    <br>
+
+
+        <div class="css-xfq28i"></div>
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>Sobre nosotros</h6>
+                        <p class="text-justify">NexusERP <i>TIENE COMO OBJETIVO </i> brindar apoyo a empresas tanto grandes como peque;as.</p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Lenguajes con los que trabajamos: </h6>
+                        <ul class="footer-links">
+                            <li><a href="">C</a></li>
+                            <li><a href="">PHP</a></li>
+                            <li><a href="">Java</a></li>
+                            <li><a href="">Android</a></li>
+                            <li><a href="">Templates</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>CONTACTO</h6>
+                        <ul class="footer-links">
+                            <li><a href="">Sobre nosotros</a></li>
+                            <li><a href="">Contactanos</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">
+                            Copyright &copy; @DateTime.Now.Year - All Rights Reserved by
+                            <a href="#">NexusERP</a>.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

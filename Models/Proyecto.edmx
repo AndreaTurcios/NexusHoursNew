@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NexusWorkHoursSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="ID_actividad" />
+          </Key>
+          <Property Name="ID_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="actividad" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_asignacion" Type="datetime" />
+          <Property Name="fecha_finalizacion" Type="datetime" />
+          <Property Name="tiempo_horas" Type="int" />
+          <Property Name="tiempo_dias" Type="int" />
+          <Property Name="tiempo_minutos" Type="int" />
+          <Property Name="actividades_cliente" Type="int" Nullable="false" />
+          <Property Name="actividades_estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="ID_cliente" />
+          </Key>
+          <Property Name="ID_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cliente" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cliente_tel" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="cliente_domicilio" Type="varchar" MaxLength="30" />
+          <Property Name="cliente_correo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cliente_proyectos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="colaborador">
+          <Key>
+            <PropertyRef Name="ID_colaborador" />
+          </Key>
+          <Property Name="ID_colaborador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="colaborador_nombres" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="colaborador_apellidos" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="colaborador_usuario" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="colaborador_contrasenia" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="colaborador_telefono" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="colaborador_correo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="colaborador_actividades" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="control_colaborador">
+          <Key>
+            <PropertyRef Name="ID_control" />
+          </Key>
+          <Property Name="ID_control" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tiempo_horas_semana" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tiempo_horas_mes" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="control_colaborador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado_actividad">
+          <Key>
+            <PropertyRef Name="ID_estado" />
+          </Key>
+          <Property Name="ID_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado_actividad" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proyectos">
+          <Key>
+            <PropertyRef Name="ID_proyecto" />
+          </Key>
+          <Property Name="ID_proyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="proyecto_nombre" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__actividad__activ__2B3F6F97">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="actividades" Type="Self.actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="ID_cliente" />
+            </Principal>
+            <Dependent Role="actividades">
+              <PropertyRef Name="actividades_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__actividad__activ__2C3393D0">
+          <End Role="estado_actividad" Type="Self.estado_actividad" Multiplicity="1" />
+          <End Role="actividades" Type="Self.actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_actividad">
+              <PropertyRef Name="ID_estado" />
+            </Principal>
+            <Dependent Role="actividades">
+              <PropertyRef Name="actividades_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cliente__cliente__267ABA7A">
+          <End Role="proyectos" Type="Self.proyectos" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyectos">
+              <PropertyRef Name="ID_proyecto" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="cliente_proyectos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__colaborad__colab__2F10007B">
+          <End Role="actividades" Type="Self.actividades" Multiplicity="1" />
+          <End Role="colaborador" Type="Self.colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividades">
+              <PropertyRef Name="ID_actividad" />
+            </Principal>
+            <Dependent Role="colaborador">
+              <PropertyRef Name="colaborador_actividades" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__control_c__contr__31EC6D26">
+          <End Role="colaborador" Type="Self.colaborador" Multiplicity="1" />
+          <End Role="control_colaborador" Type="Self.control_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colaborador">
+              <PropertyRef Name="ID_colaborador" />
+            </Principal>
+            <Dependent Role="control_colaborador">
+              <PropertyRef Name="control_colaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NexusWorkHoursSModelStoreContainer">
+          <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="colaborador" EntityType="Self.colaborador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="control_colaborador" EntityType="Self.control_colaborador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado_actividad" EntityType="Self.estado_actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proyectos" EntityType="Self.proyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__actividad__activ__2B3F6F97" Association="Self.FK__actividad__activ__2B3F6F97">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="actividades" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__actividad__activ__2C3393D0" Association="Self.FK__actividad__activ__2C3393D0">
+            <End Role="estado_actividad" EntitySet="estado_actividad" />
+            <End Role="actividades" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cliente__cliente__267ABA7A" Association="Self.FK__cliente__cliente__267ABA7A">
+            <End Role="proyectos" EntitySet="proyectos" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__colaborad__colab__2F10007B" Association="Self.FK__colaborad__colab__2F10007B">
+            <End Role="actividades" EntitySet="actividades" />
+            <End Role="colaborador" EntitySet="colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__control_c__contr__31EC6D26" Association="Self.FK__control_c__contr__31EC6D26">
+            <End Role="colaborador" EntitySet="colaborador" />
+            <End Role="control_colaborador" EntitySet="control_colaborador" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NexusWorkHoursSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="ID_actividad" />
+          </Key>
+          <Property Name="ID_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="actividad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_asignacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_finalizacion" Type="DateTime" Precision="3" />
+          <Property Name="tiempo_horas" Type="Int32" />
+          <Property Name="tiempo_dias" Type="Int32" />
+          <Property Name="tiempo_minutos" Type="Int32" />
+          <Property Name="actividades_cliente" Type="Int32" Nullable="false" />
+          <Property Name="actividades_estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__actividad__activ__2B3F6F97" FromRole="actividades" ToRole="cliente" />
+          <NavigationProperty Name="estado_actividad" Relationship="Self.FK__actividad__activ__2C3393D0" FromRole="actividades" ToRole="estado_actividad" />
+          <NavigationProperty Name="colaborador" Relationship="Self.FK__colaborad__colab__2F10007B" FromRole="actividades" ToRole="colaborador" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="ID_cliente" />
+          </Key>
+          <Property Name="ID_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cliente1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cliente_tel" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cliente_domicilio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cliente_proyectos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="actividades" Relationship="Self.FK__actividad__activ__2B3F6F97" FromRole="cliente" ToRole="actividades" />
+          <NavigationProperty Name="proyectos" Relationship="Self.FK__cliente__cliente__267ABA7A" FromRole="cliente" ToRole="proyectos" />
+        </EntityType>
+        <EntityType Name="colaborador">
+          <Key>
+            <PropertyRef Name="ID_colaborador" />
+          </Key>
+          <Property Name="ID_colaborador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="colaborador_nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colaborador_apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colaborador_usuario" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colaborador_contrasenia" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colaborador_telefono" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colaborador_correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colaborador_actividades" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="actividades" Relationship="Self.FK__colaborad__colab__2F10007B" FromRole="colaborador" ToRole="actividades" />
+          <NavigationProperty Name="control_colaborador" Relationship="Self.FK__control_c__contr__31EC6D26" FromRole="colaborador" ToRole="control_colaborador" />
+        </EntityType>
+        <EntityType Name="control_colaborador">
+          <Key>
+            <PropertyRef Name="ID_control" />
+          </Key>
+          <Property Name="ID_control" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tiempo_horas_semana" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tiempo_horas_mes" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="control_colaborador1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="colaborador" Relationship="Self.FK__control_c__contr__31EC6D26" FromRole="control_colaborador" ToRole="colaborador" />
+        </EntityType>
+        <EntityType Name="estado_actividad">
+          <Key>
+            <PropertyRef Name="ID_estado" />
+          </Key>
+          <Property Name="ID_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado_actividad1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="actividades" Relationship="Self.FK__actividad__activ__2C3393D0" FromRole="estado_actividad" ToRole="actividades" />
+        </EntityType>
+        <EntityType Name="proyectos">
+          <Key>
+            <PropertyRef Name="ID_proyecto" />
+          </Key>
+          <Property Name="ID_proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="proyecto_nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__cliente__cliente__267ABA7A" FromRole="proyectos" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__actividad__activ__2B3F6F97">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="actividades" Type="Self.actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="ID_cliente" />
+            </Principal>
+            <Dependent Role="actividades">
+              <PropertyRef Name="actividades_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__actividad__activ__2C3393D0">
+          <End Role="estado_actividad" Type="Self.estado_actividad" Multiplicity="1" />
+          <End Role="actividades" Type="Self.actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_actividad">
+              <PropertyRef Name="ID_estado" />
+            </Principal>
+            <Dependent Role="actividades">
+              <PropertyRef Name="actividades_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__colaborad__colab__2F10007B">
+          <End Role="actividades" Type="Self.actividades" Multiplicity="1" />
+          <End Role="colaborador" Type="Self.colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividades">
+              <PropertyRef Name="ID_actividad" />
+            </Principal>
+            <Dependent Role="colaborador">
+              <PropertyRef Name="colaborador_actividades" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__cliente__cliente__267ABA7A">
+          <End Role="proyectos" Type="Self.proyectos" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyectos">
+              <PropertyRef Name="ID_proyecto" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="cliente_proyectos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__control_c__contr__31EC6D26">
+          <End Role="colaborador" Type="Self.colaborador" Multiplicity="1" />
+          <End Role="control_colaborador" Type="Self.control_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colaborador">
+              <PropertyRef Name="ID_colaborador" />
+            </Principal>
+            <Dependent Role="control_colaborador">
+              <PropertyRef Name="control_colaborador1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NexusWorkHoursSEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividades" EntityType="Self.actividades" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="colaborador" EntityType="Self.colaborador" />
+          <EntitySet Name="control_colaborador" EntityType="Self.control_colaborador" />
+          <EntitySet Name="estado_actividad" EntityType="Self.estado_actividad" />
+          <EntitySet Name="proyectos" EntityType="Self.proyectos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__actividad__activ__2B3F6F97" Association="Self.FK__actividad__activ__2B3F6F97">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="actividades" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__actividad__activ__2C3393D0" Association="Self.FK__actividad__activ__2C3393D0">
+            <End Role="estado_actividad" EntitySet="estado_actividad" />
+            <End Role="actividades" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__colaborad__colab__2F10007B" Association="Self.FK__colaborad__colab__2F10007B">
+            <End Role="actividades" EntitySet="actividades" />
+            <End Role="colaborador" EntitySet="colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__cliente__cliente__267ABA7A" Association="Self.FK__cliente__cliente__267ABA7A">
+            <End Role="proyectos" EntitySet="proyectos" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__control_c__contr__31EC6D26" Association="Self.FK__control_c__contr__31EC6D26">
+            <End Role="colaborador" EntitySet="colaborador" />
+            <End Role="control_colaborador" EntitySet="control_colaborador" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NexusWorkHoursSModelStoreContainer" CdmEntityContainer="NexusWorkHoursSEntities1">
+          <EntitySetMapping Name="actividades">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.actividades">
+              <MappingFragment StoreEntitySet="actividades">
+                <ScalarProperty Name="ID_actividad" ColumnName="ID_actividad" />
+                <ScalarProperty Name="actividad" ColumnName="actividad" />
+                <ScalarProperty Name="fecha_asignacion" ColumnName="fecha_asignacion" />
+                <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+                <ScalarProperty Name="tiempo_horas" ColumnName="tiempo_horas" />
+                <ScalarProperty Name="tiempo_dias" ColumnName="tiempo_dias" />
+                <ScalarProperty Name="tiempo_minutos" ColumnName="tiempo_minutos" />
+                <ScalarProperty Name="actividades_cliente" ColumnName="actividades_cliente" />
+                <ScalarProperty Name="actividades_estado" ColumnName="actividades_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="ID_cliente" ColumnName="ID_cliente" />
+                <ScalarProperty Name="cliente1" ColumnName="cliente" />
+                <ScalarProperty Name="cliente_tel" ColumnName="cliente_tel" />
+                <ScalarProperty Name="cliente_domicilio" ColumnName="cliente_domicilio" />
+                <ScalarProperty Name="cliente_correo" ColumnName="cliente_correo" />
+                <ScalarProperty Name="cliente_proyectos" ColumnName="cliente_proyectos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colaborador">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.colaborador">
+              <MappingFragment StoreEntitySet="colaborador">
+                <ScalarProperty Name="ID_colaborador" ColumnName="ID_colaborador" />
+                <ScalarProperty Name="colaborador_nombres" ColumnName="colaborador_nombres" />
+                <ScalarProperty Name="colaborador_apellidos" ColumnName="colaborador_apellidos" />
+                <ScalarProperty Name="colaborador_usuario" ColumnName="colaborador_usuario" />
+                <ScalarProperty Name="colaborador_contrasenia" ColumnName="colaborador_contrasenia" />
+                <ScalarProperty Name="colaborador_telefono" ColumnName="colaborador_telefono" />
+                <ScalarProperty Name="colaborador_correo" ColumnName="colaborador_correo" />
+                <ScalarProperty Name="colaborador_actividades" ColumnName="colaborador_actividades" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="control_colaborador">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.control_colaborador">
+              <MappingFragment StoreEntitySet="control_colaborador">
+                <ScalarProperty Name="ID_control" ColumnName="ID_control" />
+                <ScalarProperty Name="tiempo_horas_semana" ColumnName="tiempo_horas_semana" />
+                <ScalarProperty Name="tiempo_horas_mes" ColumnName="tiempo_horas_mes" />
+                <ScalarProperty Name="control_colaborador1" ColumnName="control_colaborador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_actividad">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.estado_actividad">
+              <MappingFragment StoreEntitySet="estado_actividad">
+                <ScalarProperty Name="ID_estado" ColumnName="ID_estado" />
+                <ScalarProperty Name="estado_actividad1" ColumnName="estado_actividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proyectos">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.proyectos">
+              <MappingFragment StoreEntitySet="proyectos">
+                <ScalarProperty Name="ID_proyecto" ColumnName="ID_proyecto" />
+                <ScalarProperty Name="proyecto_nombre" ColumnName="proyecto_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NexusWorkHoursSModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
