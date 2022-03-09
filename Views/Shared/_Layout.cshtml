@@ -16,12 +16,12 @@
                 <li><a href="/Default"><img src="../Resources/ActivityHoursLogo.png" width="60" height="60" class="top-center"></a></li>
             </ul>
             <ul>
-                <li>@Html.ActionLink("Proyectos", "Proyectos", "NexusWorkHoursS")</li>
+                <li>@Html.ActionLink("Proyectos", "Index", "NexusWorkHoursS")</li>
                 <li>@Html.ActionLink("Colaboradores", "Proyectos", "NexusWorkHoursS")</li>
                 <li>@Html.ActionLink("Colaboradores", "Proyectos", "NexusWorkHoursS")</li>
                 <li>@Html.ActionLink("Colaboradores", "Proyectos", "NexusWorkHoursS")</li>
-                <li>@Html.ActionLink("Control", "Login", "NexusWorkHoursS")</li>
-                <li><a href="/Login">Login</a></li>
+                <li>@Html.ActionLink("Login", "Indexl", "NexusWorkHoursS")</li>
+                <li>@Html.ActionLink("Login", "Indexl", "NexusWorkHoursS")</li>
             </ul>
         </div>
     </nav>
@@ -30,8 +30,6 @@
     @RenderBody()
 
     <br>
-
-
         <div class="css-xfq28i"></div>
         <footer class="site-footer">
             <div class="container">
@@ -85,6 +83,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
 </body>
 </html>
