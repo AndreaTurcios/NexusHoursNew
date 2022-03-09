@@ -129,27 +129,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\NexusWorkHoursSController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\actividades.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cliente.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\colaborador.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\control_colaborador.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entidad\EntidadProyecto.cs" />
     <Compile Include="Models\Entidad\EntidadPrueba.cs" />
-    <Compile Include="Models\estado_actividad.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,29 +165,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Proyecto.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Proyecto.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proyecto.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proyecto.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Proyecto.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\proyectos.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\prueba.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Proyecto.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -235,16 +199,6 @@
       <DependentUpon>Modelo.edmx</DependentUpon>
       <LastGenOutput>Modelo.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Proyecto.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Proyecto.edmx</DependentUpon>
-      <LastGenOutput>Proyecto.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Proyecto.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Proyecto.edmx</DependentUpon>
-      <LastGenOutput>Proyecto.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Model1.edmx">
@@ -260,13 +214,6 @@
     </EntityDeploy>
     <Content Include="Models\Modelo.edmx.diagram">
       <DependentUpon>Modelo.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\Proyecto.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Proyecto.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Proyecto.edmx.diagram">
-      <DependentUpon>Proyecto.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -293,15 +240,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\NexusWorkHoursS\Create.cshtml" />
-    <Content Include="Views\NexusWorkHoursS\Index.cshtml" />
-    <Content Include="Views\NexusWorkHoursS\Delete.cshtml" />
-    <Content Include="Views\NexusWorkHoursS\Edit.cshtml" />
-    <Content Include="Views\NexusWorkHoursS\Login.cshtml" />
+    <Content Include="Views\Servicio\Index.cshtml" />
+    <Content Include="Views\Servicio\Create.cshtml" />
+    <Content Include="Views\Servicio\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
