@@ -294,7 +294,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\NexusWorkHoursS\Create.cshtml" />
-    <Content Include="Views\NexusWorkHoursS\Index.cshtml" />
+    <Content Include="Views\NexusWorkHoursS\Proyectos.cshtml" />
     <Content Include="Views\NexusWorkHoursS\Delete.cshtml" />
     <Content Include="Views\NexusWorkHoursS\Edit.cshtml" />
     <Content Include="Views\NexusWorkHoursS\Login.cshtml" />

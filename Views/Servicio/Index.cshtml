@@ -1,0 +1,32 @@
+﻿@model List<SistemaMVC_Demo.Models.Entidad.EntidadPrueba>
+
+@{
+    ViewBag.Title = "Listado de servicios";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="container">
+    <div>
+        <a href="/Servicio/Create" class="btn btn-success">Crear</a>
+        <table class="table table-bordered table-hover">
+            <tr>
+                <td>I2D</td>
+                <td>Nombre</td>
+                <td>Acciones</td>
+            </tr>
+            @foreach (var reg in Model)
+            {
+                <tr>
+                    <td>@reg.id</td>
+                    <td>@reg.nombre</td>
+                    <td>
+                        <a href="#" class="btn btn-success">Editar</a>
+                        <a href="/Servicio/Delete/@reg.id"  class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
+<button class="btn btn-success">Hola Diana</button>
