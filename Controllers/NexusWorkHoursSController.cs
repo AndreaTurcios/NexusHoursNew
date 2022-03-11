@@ -41,7 +41,6 @@ namespace SistemaMVC_Demo.Controllers
             return View(listLogin);
         }
 
-
         public ActionResult Create() {
             return View();
         }
