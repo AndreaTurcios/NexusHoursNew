@@ -22,7 +22,10 @@ namespace SistemaMVC_Demo.Models
     
         public int ID_proyecto { get; set; }
         public string proyecto_nombre { get; set; }
-    
+
+        public int ID_user { get; set; }
+        public string user { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cliente> cliente { get; set; }
     }

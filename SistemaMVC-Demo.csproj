@@ -145,6 +145,7 @@
     <Compile Include="Models\control_colaborador.cs">
       <DependentUpon>Proyecto.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidad\EntidadLogin.cs" />
     <Compile Include="Models\Entidad\EntidadProyecto.cs" />
     <Compile Include="Models\Entidad\EntidadPrueba.cs" />
     <Compile Include="Models\estado_actividad.cs">

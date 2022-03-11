@@ -31,6 +31,7 @@ namespace SistemaMVC_Demo.Models
         public virtual DbSet<control_colaborador> control_colaborador { get; set; }
         public virtual DbSet<estado_actividad> estado_actividad { get; set; }
         public virtual DbSet<proyectos> proyectos { get; set; }
+        public virtual DbSet<proyectos> login { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

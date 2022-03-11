@@ -25,6 +25,23 @@ namespace SistemaMVC_Demo.Controllers
                 return View(listProyectos);
         }
 
+
+        public ActionResult Login()
+        {
+            List<EntidadLogin> listLogin;
+            using (NexusWorkHoursSEntities1 db = new NexusWorkHoursSEntities1())
+            {
+                listLogin = (from d in db.login
+                                 select new EntidadLogin
+                                 {
+                                     ID_user = d.ID_user,
+                                     user = d.user
+                                 }).ToList();
+            }
+            return View(listLogin);
+        }
+
+
         public ActionResult Create() {
             return View();
         }
